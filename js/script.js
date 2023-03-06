@@ -62,7 +62,7 @@ buttonGridEl.addEventListener("click", function() {
         generateGrid(49, 7);
         //assegno alla variabile funzione che crea array di numeri casuali (inserisco range in cui devono essere presi numeri)
         numeroBombe = arrayBombs(49);
-       
+        console.log(numeroBombe);
 
     }
 
@@ -123,8 +123,15 @@ function generateGrid(numberCells, numberColumns){
 
             //se l'utente clicca su una cella corrispondete a un numero dell'arrey con numeri casuali
             if (numeroBombe.includes(i)){
-                //al click di una cella corrispondente a un numero dell 'array interrompi il gioco e compare un messagio relativo
-                newSquareElement.classList.add("black");
+                let allSquare = document.querySelectorAll(".square");
+
+                for (let x = 1 ; x < allSquare.length ; x++) {
+                    if(numeroBombe.includes(parseInt(allSquare[x].innerText))){
+                        allSquare[x].classList.add("black");
+
+                    }
+                    //al click di una cella corrispondente a un numero dell 'array interrompi il gioco e compare un messagio relativo
+                }
                 finishedGameEl.classList.add("finished-text");
                 finishedGameEl.innerText = `Mi dispiace hai perso; hai ottenuto ${count} punti , ricarica la pagina `;
                 containerGridEl.style.pointerEvents =  "none";            
